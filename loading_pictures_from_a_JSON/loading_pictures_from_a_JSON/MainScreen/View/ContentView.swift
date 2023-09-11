@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel = DataLoaderViewModel()
     @State private var image: UIImage? = nil
     @State private var isPresentingDetail = false
     
@@ -43,16 +44,14 @@ struct ContentView: View {
     }
     
     func changeImage() {
-        DataLoaderNetworkService.getData { result in
-            switch result {
-            case .success(let response):
-                LoadingImage.downloadImage(url: response.data.image) { image in
-                    DispatchQueue.main.async {
-                        self.image = image
-                    }
+        viewModel.getData { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
+                    self.image = image
+                case .failure(let error):
+                    print("error", error)
                 }
-            case .failure(let error):
-                print("Error fetching data: \(error)")
             }
         }
     }
