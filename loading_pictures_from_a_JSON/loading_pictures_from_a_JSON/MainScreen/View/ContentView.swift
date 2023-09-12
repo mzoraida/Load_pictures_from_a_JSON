@@ -21,6 +21,7 @@ struct ContentView: View {
                         .padding()
                         .onTapGesture {
                             isPresentingDetail = true
+                            viewModel.casheImage()
                         }
                         .sheet(isPresented: $isPresentingDetail) {
                             DetailView(image: image)

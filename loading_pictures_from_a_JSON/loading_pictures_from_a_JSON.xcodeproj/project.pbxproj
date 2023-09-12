@@ -17,6 +17,7 @@
 		C7AF10622AADC171000E13B0 /* DataLoaderNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AF10612AADC171000E13B0 /* DataLoaderNetworkService.swift */; };
 		C7AF10642AADC1B2000E13B0 /* GetDataResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AF10632AADC1B2000E13B0 /* GetDataResponce.swift */; };
 		C7AF106E2AADD1A2000E13B0 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AF106D2AADD1A2000E13B0 /* DetailView.swift */; };
+		C7BD05E42AB0523500EB142D /* CasheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD05E32AB0523500EB142D /* CasheImage.swift */; };
 		C7CD2C7B2AAF0867006F29FA /* DataLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD2C7A2AAF0867006F29FA /* DataLoaderViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		C7AF10612AADC171000E13B0 /* DataLoaderNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoaderNetworkService.swift; sourceTree = "<group>"; };
 		C7AF10632AADC1B2000E13B0 /* GetDataResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataResponce.swift; sourceTree = "<group>"; };
 		C7AF106D2AADD1A2000E13B0 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C7BD05E32AB0523500EB142D /* CasheImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasheImage.swift; sourceTree = "<group>"; };
 		C7CD2C7A2AAF0867006F29FA /* DataLoaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoaderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,9 +67,9 @@
 		C770A8E72AACAD0F003656EE /* loading_pictures_from_a_JSON */ = {
 			isa = PBXGroup;
 			children = (
-				C7AF106C2AADD17A000E13B0 /* DetailScreen */,
 				C7AF10692AADCE0A000E13B0 /* Application */,
 				C7AF10652AADCD7E000E13B0 /* MainScreen */,
+				C7AF106C2AADD17A000E13B0 /* DetailScreen */,
 				C770A8EE2AACAD0F003656EE /* Preview Content */,
 			);
 			path = loading_pictures_from_a_JSON;
@@ -132,6 +134,7 @@
 			children = (
 				C770A8F82AACAE63003656EE /* NetworkService.swift */,
 				C7AF105F2AADBC96000E13B0 /* LoadingImage.swift */,
+				C7BD05E32AB0523500EB142D /* CasheImage.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				C770A8EB2AACAD0F003656EE /* ContentView.swift in Sources */,
 				C7AF106E2AADD1A2000E13B0 /* DetailView.swift in Sources */,
+				C7BD05E42AB0523500EB142D /* CasheImage.swift in Sources */,
 				C770A8F72AACADF7003656EE /* DataLoader.swift in Sources */,
 				C770A8F92AACAE63003656EE /* NetworkService.swift in Sources */,
 				C770A8E92AACAD0F003656EE /* loading_pictures_from_a_JSONApp.swift in Sources */,

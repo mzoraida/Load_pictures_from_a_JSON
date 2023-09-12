@@ -12,16 +12,16 @@ class DataLoaderNetworkService: NSObject {
     override init() {}
     
     static func getData(completion: @escaping(Result<GetDataResponse, Error>) -> ()) {
-        let jsonUrlString = "https://randomfox.ca/floof/"
-        guard let url = URL(string: jsonUrlString) else { return }
+        let url = "https://randomfox.ca/floof/"
+        guard let url = URL(string: url) else { return }
         
         NetworkService.shared.getData(url: url) { (result) in
             switch result {
             case .success(let json):
                 do {
                     if let jsonDict = json as? [String: Any] {
-                        let response = try GetDataResponse(json: jsonDict)
-                        completion(.success(response))
+                        let data = try GetDataResponse(json: jsonDict)
+                        completion(.success(data))
                     } else {
                         let error = NSError(domain: "Invalid JSON", code: 0, userInfo: nil)
                         completion(.failure(error))
