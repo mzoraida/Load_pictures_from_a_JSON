@@ -66,19 +66,6 @@ struct ContentView: View {
     }
 }
 
-//struct LoadingView: View {
-//    var body: some View {
-//        ZStack {
-//            Color(.systemBackground)
-//                .ignoresSafeArea()
-//            
-//            ProgressView()
-//                .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-//                .scaleEffect(3)
-//        }
-//    }
-//}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

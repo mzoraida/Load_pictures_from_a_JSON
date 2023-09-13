@@ -13,7 +13,7 @@ class PictureViewModel {
     private let url = "https://randomfox.ca/floof/"
     
     func getPicture(completion: @escaping (Result<UIImage, Error>) -> Void) {
-        DataLoader.getData(url: url) { result in
+        DataLoader.shared.getData(url: url) { result in
             switch result {
             case .success(let json):
                 guard let picture = Picture(dict: json) else { return }

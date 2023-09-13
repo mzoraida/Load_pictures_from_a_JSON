@@ -14,7 +14,7 @@ class NetworkService {
     
     static let shared = NetworkService()
     
-    public func getData(url: URL, completion: @escaping (Result<Any, Error>) -> ()) {
+    func getData(url: URL, completion: @escaping (Result<Any, Error>) -> ()) {
         let session = URLSession.shared
         
         session.dataTask(with: url) { data, response, error in
@@ -23,11 +23,7 @@ class NetworkService {
                 return
             }
             
-            guard let data = data else {
-                let error = NSError(domain: "NetworkServiceErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
-                completion(.failure(error))
-                return
-            }
+            guard let data = data else { return }
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])

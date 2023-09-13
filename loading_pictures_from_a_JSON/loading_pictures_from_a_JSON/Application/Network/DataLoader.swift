@@ -10,7 +10,9 @@ import Foundation
 class DataLoader: NSObject {
     override init() {}
     
-    static func getData(url: String, completion: @escaping(Result<[String: Any], Error>) -> ()) {
+    static let shared = DataLoader()
+    
+    func getData(url: String, completion: @escaping(Result<[String: Any], Error>) -> ()) {
         guard let url = URL(string: url) else { return }
         
         NetworkService.shared.getData(url: url) { result in
