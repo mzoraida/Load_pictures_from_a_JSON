@@ -8,19 +8,21 @@
 import Foundation
 import SwiftUI
 
-class DataLoaderViewModel {
-    var data: DataLoader? = nil
+class PictureViewModel {
+    private var picture: Picture? = nil
+    private let url = "https://randomfox.ca/floof/"
     
-    func getData(completion: @escaping (Result<UIImage, Error>) -> Void) {
-        DataLoaderNetworkService.getData { result in
+    func getPicture(completion: @escaping (Result<UIImage, Error>) -> Void) {
+        DataLoader.getData(url: url) { result in
             switch result {
-            case .success(let response):
-                guard let imageUrl = URL(string: response.data.image) else { return }
-                LoadingImage.downloadImage(url: imageUrl) { image in
+            case .success(let json):
+                guard let picture = Picture(dict: json) else { return }
+                self.picture = picture
+                guard let imageUrl = URL(string: self.picture!.imageLink) else { return }
+                LoadingImage.loadingImage(url: imageUrl) { image in
                     guard let image = image else {
                         return
                     }
-                    self.data = response.data
                     completion(.success(image))
                 }
             case .failure(let error):
@@ -29,12 +31,13 @@ class DataLoaderViewModel {
         }
     }
     
-    func casheImage() {
-        guard let imageUrl = URL(string: data?.image ?? "") else { return }
+    func cashePicture() {
+        guard let imageUrl = URL(string: self.picture!.imageLink) else { return }
+        
         if let cachedImage = CasheImage.shared.get(url: imageUrl as NSURL) {
             print("Данное изображение загруженно ИЗ кеша", cachedImage)
         } else {
-            LoadingImage.downloadImage(url: imageUrl) { image in
+            LoadingImage.loadingImage(url: imageUrl) { image in
                 if let image = image {
                     CasheImage.shared.save(url: imageUrl as NSURL, image: image)
                     print("Данное изображение загруженно В кеш", imageUrl)

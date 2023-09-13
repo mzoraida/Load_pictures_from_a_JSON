@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    var viewModel = DataLoaderViewModel()
+    private var viewModel = PictureViewModel()
     @State private var image: UIImage? = nil
     @State private var isPresentingDetail = false
+    @State private var isLoading = false
     
     var body: some View {
         VStack {
-            if let image = image {
+            if isLoading {
+                LoadingView()
+            } else {
+                if let image = image {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding()
                         .onTapGesture {
                             isPresentingDetail = true
-                            viewModel.casheImage()
+                            viewModel.cashePicture()
                         }
                         .sheet(isPresented: $isPresentingDetail) {
                             DetailView(image: image)
@@ -30,23 +34,27 @@ struct ContentView: View {
                     Text("No Image")
                         .font(.title)
                 }
-            
-            Button(action: {
-                changeImage()
-            }) {
-                Text("Next Image")
-                    .font(.title)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                
+                Button(action: {
+                    changeImage()
+                }) {
+                    Text("Next Image")
+                        .font(.title)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
             }
         }
     }
     
-    func changeImage() {
-        viewModel.getData { result in
+    private func changeImage() {
+        isLoading = true
+        
+        viewModel.getPicture { result in
             DispatchQueue.main.async {
+                isLoading = false
                 switch result {
                 case .success(let image):
                     self.image = image
@@ -57,6 +65,19 @@ struct ContentView: View {
         }
     }
 }
+
+//struct LoadingView: View {
+//    var body: some View {
+//        ZStack {
+//            Color(.systemBackground)
+//                .ignoresSafeArea()
+//            
+//            ProgressView()
+//                .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+//                .scaleEffect(3)
+//        }
+//    }
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

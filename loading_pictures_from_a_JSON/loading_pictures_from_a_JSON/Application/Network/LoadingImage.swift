@@ -10,8 +10,7 @@ import SwiftUI
 
 class LoadingImage {
     
-    static func downloadImage(url: URL, completion: @escaping (_ image: UIImage?) -> Void) {
-        
+    static func loadingImage(url: URL, completion: @escaping (_ image: UIImage?) -> Void) {
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {

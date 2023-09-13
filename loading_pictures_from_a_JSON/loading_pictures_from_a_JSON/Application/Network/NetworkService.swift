@@ -9,13 +9,15 @@ import Foundation
 import SwiftUI
 
 class NetworkService {
+    
     private init() {}
+    
     static let shared = NetworkService()
     
     public func getData(url: URL, completion: @escaping (Result<Any, Error>) -> ()) {
         let session = URLSession.shared
         
-        session.dataTask(with: url) { (data, response, error) in
+        session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
